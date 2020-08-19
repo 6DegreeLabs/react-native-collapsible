@@ -15,6 +15,7 @@ export default class Collapsible extends Component {
     easing: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     style: ViewPropTypes.style,
     onAnimationEnd: PropTypes.func,
+    recalculateHeightOnLayout: PropTypes.bool,
     children: PropTypes.node,
   };
 
@@ -26,6 +27,7 @@ export default class Collapsible extends Component {
     duration: 300,
     easing: 'easeOutCubic',
     onAnimationEnd: () => null,
+    recalculateHeightOnLayout: false,
   };
 
   constructor(props) {
@@ -224,7 +226,7 @@ export default class Collapsible extends Component {
         <Animated.View
           ref={this._handleRef}
           style={[this.props.style, contentStyle]}
-          onLayout={this.state.animating ? undefined : this._handleLayoutChange}
+          onLayout={(this.props.recalculateHeightOnLayout || this.state.animating) ? undefined : this._handleLayoutChange}
         >
           {this.props.children}
         </Animated.View>
