@@ -226,7 +226,7 @@ export default class Collapsible extends Component {
         <Animated.View
           ref={this._handleRef}
           style={[this.props.style, contentStyle]}
-          onLayout={(this.props.recalculateHeightOnLayout || this.state.animating) ? undefined : this._handleLayoutChange}
+          onLayout={(!this.props.recalculateHeightOnLayout || this.state.animating) ? undefined : this._handleLayoutChange}
         >
           {this.props.children}
         </Animated.View>
